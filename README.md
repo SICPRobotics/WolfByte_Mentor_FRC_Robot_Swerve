@@ -1,1 +1,2 @@
 # WolfByte_Mentor_FRC_Robot_Swerve
+This code is intended to provide mentors with a space to conduct experimental programming with new modules or code refactoring that is isolated from student development projects
