@@ -4,9 +4,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+// Scheduling Libraries
+import edu.wpi.first.wpilibj.TimedRobot;    // Implements the IterativeRobotBase robot program framework. It is intended to be subclassed by a user creating a robot program. - DFlowers 1/19/24
+import edu.wpi.first.wpilibj.Timer;         // A timer class - DFlowers 1/19/24
+
+
+import edu.wpi.first.wpilibj2.command.Command;             // A state machine representing a complete action to be performed by the robot. - DFlowers 1/19/24
+import edu.wpi.first.wpilibj2.command.CommandScheduler;    // The scheduler responsible for running Commands. - DFlowers 1/19/24
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
