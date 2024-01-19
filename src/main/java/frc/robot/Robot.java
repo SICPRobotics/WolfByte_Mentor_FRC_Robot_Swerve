@@ -5,10 +5,13 @@
 package frc.robot;
 
 // Scheduling Libraries
-import edu.wpi.first.wpilibj.TimedRobot;    // Implements the IterativeRobotBase robot program framework. It is intended to be subclassed by a user creating a robot program. - DFlowers 1/19/24
-
+import edu.wpi.first.wpilibj.TimedRobot;                   // Implements the IterativeRobotBase robot program framework. It is intended to be subclassed by a user creating a robot program. - DFlowers 1/19/24
 import edu.wpi.first.wpilibj2.command.Command;             // A state machine representing a complete action to be performed by the robot. - DFlowers 1/19/24
 import edu.wpi.first.wpilibj2.command.CommandScheduler;    // The scheduler responsible for running Commands. - DFlowers 1/19/24
+
+// Robot Utility Libraires
+import frc.robot.robotutils.StatusCheck;                   // Responsible for displaying status of motors and CAN signal to SmartDashboard  - DFlowers 1/19/24
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,6 +26,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  // Declare and instantiate Status Check - DFlowers 1/16/24 
+  StatusCheck checker = new StatusCheck();
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -30,6 +36,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+
+    checker.getConstants();                      // Get motor constant values - DFlowers 1/19/24/
+
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
   }
