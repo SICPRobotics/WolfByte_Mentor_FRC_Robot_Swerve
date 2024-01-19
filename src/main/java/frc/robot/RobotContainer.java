@@ -46,6 +46,9 @@ public class RobotContainer {
             )
         );
 
+        //Reset Swerve Modules to Absolute - DFlowers 1/18/24 
+        s_Swerve.resetModulesToAbsolute();
+
         // Configure the button bindings
         configureButtonBindings();
     }
