@@ -94,7 +94,11 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    // Call Status Check for an update - DFlowers 1/19/24
+    checker.update();
+  }
 
   @Override
   public void testInit() {

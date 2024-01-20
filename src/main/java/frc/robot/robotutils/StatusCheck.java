@@ -1,23 +1,24 @@
 package frc.robot.robotutils;
 
+// Java Utility Libraries
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// TaloxFX Libaries
 import com.ctre.phoenix6.hardware.TalonFX;
 
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
+//SmartDashboard Libraries
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.SmartDashBoardClass;
+// Robot Constant Values
 import frc.robot.Constants;
 
-/*
- * display status of motors and CAN signal from here
- */
-
+/* Author: DFlowers 1/19/24
+*  Class: Status Check
+*  Description: Custom class to Check Power Status of motors
+*/
 public class StatusCheck {
-    // add a name for each motor in constatnts
 
     //Talonfx
     Map<String, Integer> motorIDList = new HashMap<>();
@@ -25,16 +26,16 @@ public class StatusCheck {
     ArrayList<Integer> idList = new ArrayList<Integer>();
     ArrayList<TalonFX> motors = new ArrayList<TalonFX>();
 
-    // NEED TO FIX  - DFlowers 1/19/24
-    //ArrayList<SmartDashBoardClass<Boolean>> smartDashBoardClasses = new ArrayList<SmartDashBoardClass<Boolean>>();
-
-    public void StatusCheck(){
-    }
-
+     /* Author: DFlowers 1/19/24
+     *  Function: getConstants
+     *  Description: Function that iterates through an array list of motors
+     *  Parameter: None
+     *  Return: void
+     */
     public void getConstants(){
-
-        // NEED TO FIX  - DFlowers 1/19/24
-        //motorIDList.putAll(Constants.getComponentIDList());
+ 
+        // Get all motor id's and put in a hash map - DFlowers 1/19/24
+        motorIDList.putAll(Constants.getComponentIDList());     
         
         keyList.addAll(motorIDList.keySet());
         idList.addAll(motorIDList.values());
@@ -43,40 +44,54 @@ public class StatusCheck {
         }
     }
 
+     /* Author: DFlowers 1/19/24
+     *  Function: update
+     *  Description: Function that iterates through an array list of motors
+     *  Parameter: None
+     *  Return: void
+     */
     public void update(){
         checkPowerList();
-        checkCanList();
     }
 
+
+     /* Author: DFlowers 1/19/24
+     *  Function: checkPowerList
+     *  Description: Function that iterates through an array list of motors
+     *  Parameter: None
+     *  Return: void
+     */
     public void checkPowerList(){
         for (int i = 0; i < keyList.size(); i ++){
             if(checkPower(motors.get(i)) == true){
                 
-                // NEED TO FIX  - DFlowers 1/19/24
-                // SmartDashboard.putBoolean(keyList.get(i) + " ID:" + motorIDList.get(keyList.get(i)), true);
+                // If motor is powered on, add motor id to smart dashboard with a true flag.  - DFlowers 1/19/24
+                SmartDashboard.putBoolean(keyList.get(i) + " ID:" + motorIDList.get(keyList.get(i)), true);
             }
             else{
-                // NEED TO FIX  - DFlowers 1/19/24
-                // SmartDashboard.putBoolean(keyList.get(i) + " ID:" + motorIDList.get(keyList.get(i)), false);
+                // If motor is powered on, add motor id to smart dashboard with a false flag.  - DFlowers 1/19/24
+                SmartDashboard.putBoolean(keyList.get(i) + " ID:" + motorIDList.get(keyList.get(i)), false);
             }
         }
     }
 
+
+    /*  Author: DFlowers 1/19/24
+     *  Function: checkPower
+     *  Description: Check Power of a specifc Falcon Motor
+     *  Parameter: TaloxFX (extended from CoreTalonFX)
+     *  Return: Boolean
+     */
     public boolean checkPower(TalonFX checkingFalcon){
+
+         // Returns MotorVoltage Status Signal Object and check if it is false - DFlowers 1/19/24
         if(checkingFalcon.getMotorVoltage().getValueAsDouble() == 0){
+            // return false if value is 0
             return false;
         }
+
+        // Assume the power is on and return true 
         return true;
     }
 
-    public void checkCanList(){
-        
-    }
-
-    public boolean checkCan(){
-        //check to see if can frames are being received
-        return true;
-    }
 }
-
-//       autoDelay = new SmartDashBoardClass<Double>("autoDelay", 0.0);

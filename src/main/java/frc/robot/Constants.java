@@ -1,19 +1,54 @@
 package frc.robot;
 
+// Java Utility Libaries
+import java.util.HashMap;
+import java.util.Map;
+
+// CTRE Phoneix6 Libarires
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 
+// FIRST Robotics Math Libraries 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+
+// FIRST Robotics Utility Libary
 import frc.lib.util.COTSTalonFXSwerveConstants;
 import frc.lib.util.SwerveModuleConstants;
 
+/* Author: DFlowers 1/19/24
+*  Class: Constants
+*  Description: Contain robot constant values for future retrieval
+*/
 public final class Constants {
     public static final double stickDeadband = 0.1;
+
+     /* Author: DFlowers 1/19/24
+     *  Function: getComponentIDList
+     *  Description: Get List of Component
+     *  Parameter: None
+     *  Return: Map
+     */
+    public static final Map getComponentIDList(){
+            Map<String, Integer> motorIDList = new HashMap<>();
+
+            //Swerve drivetrain motor IDs 
+            motorIDList.put("Front Left Drive", Swerve.Mod0.driveMotorID); //front left drive
+            motorIDList.put("Front Left Turn", Swerve.Mod0.angleMotorID); //front left turn 
+            motorIDList.put("Front Right Drive", Swerve.Mod1.driveMotorID); //front right drive 
+            motorIDList.put("Front Right Turn", Swerve.Mod1.angleMotorID); // front right turn
+            motorIDList.put("Back Right Drive", Swerve.Mod2.driveMotorID);
+            motorIDList.put("Back Right Turn", Swerve.Mod2.angleMotorID);
+            motorIDList.put("Back Left Drive", Swerve.Mod3.driveMotorID);
+            motorIDList.put("Back Left Turn", Swerve.Mod3.angleMotorID);
+
+            return motorIDList;
+        }
+
 
     public static final class Swerve {
         public static final int pigeonID = 1;
